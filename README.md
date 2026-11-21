@@ -1,9 +1,16 @@
 # Levelup Mathh AI Telegram Bot
 
-SAT Math, Milliy sertifikat va umumiy matematika uchun o'zbekcha AI Telegram bot.
+O'zbekcha matematika bo'yicha Telegram AI yordamchisi.
 
-**O'rnatish, sozlash, iPhone orqali hosting va maxfiylik bo'yicha to'liq yo'riqnoma:** [README_UZ.md](README_UZ.md)
+## Bepul va telefon orqali ishga tushirish
 
-Buyruqlar: `/start`, `/sat`, `/milliy`, `/umumiy`, `/kurslar`, `/reset`, `/privacy`, `/help`.
+**[iPhone uchun Cloudflare Workers + bepul AI yo'riqnomasi](CLOUDFLARE_BEPUL_UZ.md)**.
 
-Loyiha hozircha serverga joylashtirilmagan. Haqiqiy tokenlarni repository'ga yozmang.
+Bu versiya JavaScript'da yozilgan: [cloudflare/worker.js](cloudflare/worker.js).
+Bepul versiyada hozircha faqat matnli matematika savollari mavjud.
+
+## Python variant (OpenAI API talab qiladi)
+
+[Python botni Windows/hostingga o'rnatish uchun qo'llanma](README_UZ.md).
+
+**Xavfsizlik:** Telegram tokenini va maxfiy parollarni kodga yoki GitHub'ga yubormang.
