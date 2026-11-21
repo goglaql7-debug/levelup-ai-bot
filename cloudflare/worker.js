@@ -176,8 +176,20 @@ export default {
     if (request.method === "GET" && path === "/setup") return htmlPage();
 
     if (request.method === "POST" && path === "/setup") {
-      if (!env.TELEGRAM_BOT_TOKEN || !env.SETUP_PASSWORD || env.SETUP_PASSWORD.length < 20)
-        return new Response("Cloudflare'da TELEGRAM_BOT_TOKEN va uzun SETUP_PASSWORD sozlanmagan.", { status: 503 });
+      // Diagnose missing bindings without printing, logging, or returning their values.
+      const issues = [];
+      if (typeof env.TELEGRAM_BOT_TOKEN !== "string" || !env.TELEGRAM_BOT_TOKEN.trim()) {
+        issues.push("TELEGRAM_BOT_TOKEN serverga ulanmagan");
+      }
+      if (typeof env.SETUP_PASSWORD !== "string" || !env.SETUP_PASSWORD) {
+        issues.push("SETUP_PASSWORD serverga ulanmagan");
+      } else if (env.SETUP_PASSWORD.length < 20) {
+        issues.push("SETUP_PASSWORD 20 belgidan qisqa");
+      }
+      if (issues.length) return new Response("Sozlama xatosi: " + issues.join("; "), {
+        status: 503,
+        headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "no-store" },
+      });
       const form = await request.formData().catch(() => null);
       const password = form?.get("password");
       if (typeof password !== "string" || password !== env.SETUP_PASSWORD)
