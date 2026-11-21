@@ -1,0 +1,15 @@
+{
+  "name": "levelup-mathh-ai-cloudflare",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Free serverless Telegram AI math assistant using Cloudflare Workers AI",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "test": "node --test cloudflare/worker.test.js",
+    "check": "node --check cloudflare/worker.js"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
